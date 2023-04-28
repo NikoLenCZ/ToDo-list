@@ -1,6 +1,6 @@
 # 📝 Jednoduchý To-Do list s aktuálním datem a časem
 
-Chtěla jsem si vytvořit jednoduchý to-do list úkolů a osvěžit si základy Javasciptu. Časem budou krok po kroku přibývat nové funkcionality.
+Chtěla jsem si vytvořit jednoduchý to-do list úkolů a osvěžit si základy JavaSciptu. Časem budou krok po kroku přibývat nové funkcionality.
 
 
 ****
