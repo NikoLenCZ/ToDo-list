@@ -31,7 +31,7 @@ Chtěla jsem si vytvořit jednoduchý to-do list úkolů a osvěžit si základy
 
 ## 👀 Finální stránka
 
-výsledná stránka: https://nikolencz.github.io/todo-list
+výsledná stránka: https://nikolencz.github.io/ToDo-list
 
 
 ****
