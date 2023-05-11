@@ -2,7 +2,7 @@
 // ? ADD NEW TASK
 
 const addButton = document.querySelector('.push');
-addButton.addEventListener('click', function () {
+addButton.addEventListener('click', function (event) {
   event.preventDefault();
   const inputText = document.querySelector('.newTask input');
   let inputTextValue = inputText.value;
@@ -40,7 +40,7 @@ addButton.addEventListener('click', function () {
 
 // ? EDIT TASK
 
-function edit() {
+const edit = () => {
   let editTasks = Array.from(document.querySelectorAll('.edit'));
   editTasks.forEach(function (editTask) {
     editTask.addEventListener('click', function () {
@@ -57,7 +57,6 @@ function edit() {
         task.replaceChild(inputEdit, taskName);
       }
       editButton.innerHTML = '<i class="fa-solid fa-check"></i>';
-
       editButton.addEventListener('click', function () {
         let newName = inputEdit.value;
         let newTaskName = document.createElement('span');
@@ -80,8 +79,7 @@ edit();
 
 // ? COMPLETED TASK
 
-function complete() {
-
+const complete = () => {
   let completeTask = Array.from(document.querySelectorAll('.completeTask'));
   for (let i = 0; i < completeTask.length; i++)
   {
@@ -94,7 +92,7 @@ complete();
 
 // ? DELETE TASK
 
-function remove() {
+const remove = () => {
   let deleteTasks = Array.from(document.querySelectorAll('.delete'));
   for (let i = 0; i < deleteTasks.length; i++)
   {
@@ -104,6 +102,3 @@ function remove() {
   }
 };
 remove();
-
-
-
