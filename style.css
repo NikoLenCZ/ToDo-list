@@ -56,6 +56,10 @@ html {
 
 /* TODO LIST */
 
+.todoContainer {
+  padding-block: 1rem;
+}
+
 .todo {
   width: 100%;
   min-height: var(--size-13);
@@ -211,6 +215,16 @@ button:hover {
 .completed+.taskName {
   text-decoration: line-through;
   color: var(--gray-6);
+}
+
+.task:has(.completed) {
+  background-color: transparent;
+  box-shadow: none;
+  border: 2px solid lightgray;
+}
+
+.completed ~ .taskBtn > button {
+background-color: transparent;
 }
 
 .mdVisible {

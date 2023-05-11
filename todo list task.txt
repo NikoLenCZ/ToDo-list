@@ -1,0 +1,123 @@
+// jak dát nodelist do pole:
+
+ let myTasks = Array.from(document.querySelectorAll('.task'));
+ console.log(myTasks);
+ myTasks.forEach(function giveMeTask(task) {
+   console.log(task);
+ });
+
+
+
+// TODO LIST
+// ? ADD NEW TASK
+
+const addButton = document.querySelector('.push');
+
+addButton.addEventListener('click', function () {
+
+  event.preventDefault();
+
+  const inputText = document.querySelector('.newTask input');
+  let inputTextValue = inputText.value;
+  let inputTextLength = inputTextValue.length;
+  if (inputTextLength !== 0)
+  {
+    document.querySelector('#tasks').innerHTML += `
+    <li class="task">
+      <input class="completeTask" type="checkbox" name="complete">
+      <span class="taskname">
+        ${inputTextValue}
+      </span>
+      <div class="taskBtn">
+        <button class="edit">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+        <button class="delete">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </div>
+    </li>
+    `;
+    inputText.value = '';
+  } else
+  {
+    alert('Please enter the task');
+  }
+
+  // ? EDIT TASK
+  let editTask = document.querySelectorAll('.edit');
+  for (let i = 0; i < editTask.length; i++)
+  {
+    editTask[i].addEventListener('click', function () {
+      let task = this.parentNode.parentNode;
+      let editButton = task.querySelector('.edit');
+      let deleteButton = task.querySelector('.delete');
+      let saveButton = task.querySelector('.save');
+      let cancelButton = task.querySelector('.cancel');
+      let taskName = task.querySelector('.taskname');
+      let taskNameValue = taskName ? taskName.textContent : ''; // získáme textovou hodnotu pro jméno úkolu nebo nastavíme prázdný řetězec
+      let inputEdit = document.createElement('input');
+      inputEdit.value = taskNameValue;
+
+      if (taskName)
+      {
+        task.replaceChild(inputEdit, taskName);
+      }
+      editButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+      editButton.className = 'save';
+      deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+      deleteButton.className = 'cancel';
+
+
+
+
+
+      editButton.addEventListener('click', function () { // přidáme další posluchač události 'click' na tlačítko pro editaci
+        let saveButton = task.querySelector('.save');
+        let cancelButton = task.querySelector('.cancel');
+
+        let newName = inputEdit.value;
+        let newTaskName = document.createElement('span');
+        newTaskName.setAttribute('class', 'taskname');
+        newTaskName.textContent = newName;
+
+        if (task.contains(inputEdit))
+        {
+          task.replaceChild(newTaskName, inputEdit);
+          saveButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+          saveButton.className = 'edit';
+          cancelButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+          cancelButton.className = 'delete';
+
+        } else
+        {
+          editButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+        }
+      });
+
+      // přidání posluchače pro klávesu "Escape"
+      document.body.addEventListener('keydown', function escKeybard(event) {
+        if (event.key === 'Escape')
+        {
+          inputEdit.blur();
+          // task.replaceChild(taskName, inputEdit);
+          saveButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+          saveButton.className = 'edit';
+          cancelButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+          cancelButton.className = 'delete';
+        }
+      });
+
+    });
+  }
+
+  // ? DELETE TASK
+  let deleteTasks = document.querySelectorAll('.delete');
+  for (let i = 0; i < deleteTasks.length; i++)
+  {
+    deleteTasks[i].addEventListener('click', function () {
+      this.parentNode.parentNode.remove();
+    });
+  }
+
+});

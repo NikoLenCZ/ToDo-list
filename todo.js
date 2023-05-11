@@ -28,14 +28,20 @@ addButton.addEventListener('click', function () {
     </li>
     `;
     inputText.value = '';
+    edit();
+    complete();
+    remove();
   } else
   {
     alert('Nezadal jsi žádný úkol. Nejdřív zadej, co chceš stihnout.');
   }
+});
 
-  // ? EDIT TASK
 
-  let editTasks = document.querySelectorAll('.edit');
+// ? EDIT TASK
+
+function edit() {
+  let editTasks = Array.from(document.querySelectorAll('.edit'));
   editTasks.forEach(function (editTask) {
     editTask.addEventListener('click', function () {
       let task = this.parentNode.parentNode;
@@ -69,26 +75,34 @@ addButton.addEventListener('click', function () {
       });
     });
   });
+};
 
+// ? COMPLETED TASK
 
-  // ? COMPLETED TASK
+function complete() {
 
-  let completeTask = document.querySelectorAll('.completeTask');
+  let completeTask = Array.from(document.querySelectorAll('.completeTask'));
   for (let i = 0; i < completeTask.length; i++)
   {
     completeTask[i].addEventListener('click', function () {
       this.classList.toggle('completed');
     });
   }
+};
 
+// ? DELETE TASK
 
-  // ? DELETE TASK
-
-  let deleteTasks = document.querySelectorAll('.delete');
+function remove() {
+  let deleteTasks = Array.from(document.querySelectorAll('.delete'));
   for (let i = 0; i < deleteTasks.length; i++)
   {
     deleteTasks[i].addEventListener('click', function () {
       this.parentNode.parentNode.remove();
     });
   }
-});
+};
+
+
+
+
+
