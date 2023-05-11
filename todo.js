@@ -76,6 +76,7 @@ function edit() {
     });
   });
 };
+edit();
 
 // ? COMPLETED TASK
 
@@ -89,6 +90,7 @@ function complete() {
     });
   }
 };
+complete();
 
 // ? DELETE TASK
 
@@ -101,8 +103,7 @@ function remove() {
     });
   }
 };
-
-
+remove();
 
 
 
